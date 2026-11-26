@@ -10,7 +10,7 @@ This repository is the working code behind https://lorvaagent.xyz.
 
 - **What runs today:** the five-step builder; backtests on Chainlink round history read from Robinhood Chain (ETH and the NVDA, TSLA and GOOGL stock-token feeds), with fees and slippage as inputs and every decision explained; paper mode on live prices with limit meters, alerts, pause and a kill switch; the agent timeline; export and import. Agents are deterministic rules; no AI model makes decisions.
 - **Live data:** Chainlink `latestRoundData` every 20 seconds and `getRoundData` over each feed's current phase (up to 1,000 rounds), plus the latest block and gas price, all read through the site's own relay.
-- **The contract:** `LorvaAgentRegistry` records agents owned by a wallet, versioned limits, one bound operator key, Active / Paused / Killed status and per-day usage, and refuses recorded actions over the limits. It is **not deployed yet**. It holds no funds.
+- **The contract:** `LorvaAgentRegistry` records agents owned by a wallet, versioned limits, one bound operator key, Active / Paused / Killed status and per-day usage, and refuses recorded actions over the limits. It is live on Robinhood Chain at `0x10601674a388e26c8236ff67d531fbd9b1f86126` (verified on Blockscout). It holds no funds.
 - **Planned, not built:** trading with real money through a vault you control (only after permissions and limits are proven on paper), and token features for $LORVA.
 - **What nothing here claims:** a backtest result is not a future result, and paper results are not real fills. Nothing here is advice. $LORVA has no promised value. Not affiliated with Robinhood; stock tokens are tokens on Robinhood Chain, not the shares.
 
@@ -18,7 +18,7 @@ This repository is the working code behind https://lorvaagent.xyz.
 
 | Path | What it is |
 |---|---|
-| `src/app/` | Pages (`/`, `/room`, `/build`, `/method`, `/token`, local-only `/deploy`) and API routes (`prices`, `prices/latest`, `registry`, `chain`, `rpc`). |
+| `src/app/` | Pages (`/`, `/room`, `/build`, `/method`, `/token`) and API routes (`prices`, `prices/latest`, `registry`, `chain`, `rpc`). |
 | `src/components/` | Interface components: the home chapters and pipeline diagram, the builder, the control room, the paper monitor, the chain tab, the wallet dialog. |
 | `src/config/` | `brand.ts` (name, ticker, token address, links) and `contracts.ts` (deployed contract address). Every brand value is read from here. |
 | `src/lib/agents/` | The engine (rules, limits, fills, stats, alerts), bars from Chainlink rounds, reason bits shared with the contract, the agent status machine. |
@@ -65,7 +65,7 @@ Open http://localhost:6800. Everything works with no configuration: agents are s
 
 | Contract | Address | Explorer |
 |---|---|---|
-| LorvaAgentRegistry (with internal library LorvaLimitMath) | not deployed yet | — |
+| LorvaAgentRegistry (with internal library LorvaLimitMath) | `0x10601674a388e26c8236ff67d531fbd9b1f86126` | [Blockscout](https://robinhoodchain.blockscout.com/address/0x10601674a388e26c8236ff67d531fbd9b1f86126) |
 
 An agent belongs to the wallet that registers it and carries a rules hash, limits (max position, max daily loss, trades per UTC day, stop-loss, expiry), a limits version, one operator key and a status. The operator records each paper action; the registry counts trades and realised loss per UTC day and refuses new risk over the limits, while exits always pass. The operator can tighten limits but never raise them, and can pause but never resume. Kill is final in one transaction. `canAct` returns every reason as a bit before anything is sent. There is no global owner, no admin over anyone's agent, no fee, no upgrade, and it holds no funds.
 
@@ -115,7 +115,7 @@ $LORVA is the community token of Lorva Agent on Robinhood Chain. Contract addres
 | `STORE_KEY_PREFIX` | Key prefix in a shared store | e.g. `lorva:` |
 
 3. Point your domain at it and check `/` (200), `/api/chain` (JSON with a block number), `/api/prices/latest` (four prices) and `/llms.txt`.
-4. Contract: `LorvaAgentRegistry` takes no constructor arguments. Deploy it (the local-only `/deploy` page does it from a wallet), put the address, block and creation transaction into `src/config/contracts.ts`, then run `npm run verify-deployment`.
+4. Contract: `LorvaAgentRegistry` takes no constructor arguments. Deploy it from your own wallet (one creation transaction), put the address, block and creation transaction into `src/config/contracts.ts`, then run `npm run verify-deployment`.
 
 ## Contributing
 

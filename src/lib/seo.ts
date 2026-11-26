@@ -37,7 +37,7 @@ export function pageMeta({
 }
 
 /** Share image version (sha8 of the file, written by referensi/tools/make-assets.mjs) and its description. */
-export const OG_V = "8d374b3e";
+export const OG_V = "9af94675";
 export const OG_ALT = `${BRAND.name}: the headline Trading agents. Your rules. in black capitals over a wireframe pipeline on light grey.`;
 
 export type Crumb = { name: string; path: string };

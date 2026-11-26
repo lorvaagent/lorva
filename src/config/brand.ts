@@ -22,7 +22,7 @@ const SLUG = "lorva";
 const TICKER = "LORVA";
 const DOMAIN = "lorvaagent.xyz";
 /** X account of the project (the owner's handle, exactly as written in the order). */
-const X_HANDLE = "lorva";
+const X_HANDLE = "lorvaagent";
 
 export const BRAND = {
   name: NAME,
@@ -42,7 +42,7 @@ export const BRAND = {
   x: `https://x.com/${X_HANDLE}`,
   xHandle: `@${X_HANDLE}`,
   // Public source repository: none yet, so the link stays hidden.
-  github: "https://github.com/",
+  github: "https://github.com/lorvaagent/lorva",
   ca: CA,
 } as const;
 
