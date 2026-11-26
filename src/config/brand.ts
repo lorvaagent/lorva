@@ -41,7 +41,7 @@ export const BRAND = {
   description: `${NAME} is a control room for trading agents on Robinhood Chain. You build an agent step by step (asset, rule, position size, limits), test it against real on-chain price history, then run it in paper mode on live prices with a monitor that shows positions, how much of each limit is used, alerts when a limit is near or hit, and a kill switch. Agents can be registered on chain with versioned limits and a bound operator key. No real money moves: trading through a vault is a concept.`,
   x: `https://x.com/${X_HANDLE}`,
   xHandle: `@${X_HANDLE}`,
-  // Public source repository: none yet, so the link stays hidden.
+  // Public source repository (owned by the project account since 26 Nov 2026).
   github: "https://github.com/lorvaagent/lorva",
   ca: CA,
 } as const;
