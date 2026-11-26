@@ -3,7 +3,7 @@
 // and every explorer link derive from it. Anything that is not a 0x + 40 hex address is treated as "not launched yet".
 
 /** Contract address of $LORVA on Robinhood Chain. "TBA" until the token exists. */
-const CA: string = "TBA";
+const CA: string = "0xb90f4872b00ea2d8a42fc664e6da0bf62c9a08ba";
 
 /**
  * True once the domain points at this deployment. While false, the production *.vercel.app host is served as is (kept
@@ -33,7 +33,7 @@ export const BRAND = {
   domain: DOMAIN,
   url: `https://${DOMAIN}`,
   /** Token name, exactly as the owner wrote it. */
-  tokenName: "Lorva Agent",
+  tokenName: "Lorva",
   slogan: "Trading Agents. Your Rules.",
   tagline: "Test the Strategy. Set the Limits.",
   category: "Trading agent builder and monitor",
